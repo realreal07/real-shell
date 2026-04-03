@@ -2,3 +2,4 @@
 .cache/
 *.swp
 *.tmp
+hyprland/vars/keys.conf
