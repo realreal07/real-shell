@@ -2,137 +2,167 @@
   "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
   
   "logo": {
-      "type": "builtin",
-      "height": 10,
-      "width": 10,
+      "type": "auto",
+      "source": "arch",
+      "height": 8,
+      "width": 8,
       "padding": {
-          "top": 4,
-          "left": 2
+          "top": 2,
+          "left": 2,
+          "right": 4
       }
   },
 
   "display": {
-    "separator": " >> ",
+    "pipe": false,
+    "brightColor": true,
+    "constants": [
+        "38;5;245",
+        "38;5;255"
+    ],
+    "separator": "  ›  ",
+    "color": {
+        "separator": "#ffffff"
+    },
+    "key": {
+        // "width": 22,
+        "type": "both"
+    },
+    "bar": {
+        "width": 10,
+        "char": {
+            "elapsed": "=",
+            "total": "-"
+        }
+    },
     "percent": {
-      "type": 9
+        "type": 9
     }
   },
 
   "modules": [
-    "title",
+    {
+        "type": "title",
+        "format": "\u001b[{$2}m{user-name}@{host-name}"
+    },
     {
         "type": "custom",
-        "format": "\u001b[90m┌──────────────────────Hardware──────────────────────┐"
+        "format": "\u001b[{$2}m┌─────────────────────────Hardware─────────────────────────┐"
+    },
+    {
+        "type": "display",
+        "key": " Display",
+        "keyColor": "red",
+        "format": "{name} {inch}\" {width}x{height} {scale-factor}x @ {refresh-rate}Hz"
     },
     {
         "type": "cpu",
-        "key": " CPU"
+        "key": " CPU",
+        "keyColor": "red",
+        "temp": true,
+        "format": "{name} ({cores-physical}C/{cores-logical}T) @ {freq-max} [{temperature}]"
     },
     {
         "type": "gpu",
-        "key": " GPU"
+        "key": " GPU",
+        "keyColor": "red",
+        "driverSpecific": true,
+        "hideType": "integrated",
+        "temp": true,
+        "format": "{name} [{temperature}]"
     },
     {
         "type": "memory",
-        "key": " Memory"
-    },
-    {
-        "type": "swap",
-        "key": " Swap"
+        "key": " RAM",
+        "keyColor": "red"
     },
     {
         "type": "disk",
-        "key": " Disk"
+        "key": " LDISK",
+        "hideFS": "ntfs3",
+        "keyColor": "red",
+        "format": "{size-used} / {size-total} - {filesystem} ({size-percentage})"
+    },
+    {
+        "type": "disk",
+        "key": " WDISK",
+        "hideFS": "ext4",
+        "keyColor": "red",
+        "format": "{size-used} / {size-total} - {filesystem} ({size-percentage})"
     },
     {
         "type": "custom",
-        "format": "\u001b[90m└────────────────────────────────────────────────────┘"
+        "format": "\u001b[{$2}m└──────────────────────────────────────────────────────────┘"
     },
     {
         "type": "custom",
-        "format": "\u001b[90m┌──────────────────────Software──────────────────────┐"
+        "format": "\u001b[{$2}m┌─────────────────────────Software─────────────────────────┐"
     },
     {
         "type": "os",
         "key": " OS",
-        // "keyColor": "light_green",
-        "format": "{2}"
+        "keyColor": "blue",
+        "format": "{pretty-name} [{#keys}{arch}{#output}]"
     },
     {
         "type": "kernel",
-        "key": " Kernel"
-    },
-    {
-        "type": "packages",
-        "key": " Packages"
+        "key": " KERNEL",
+        "keyColor": "blue",
+        "format": "{sysname} [{#keys}{release}{#output}]"
     },
     {
         "type": "shell",
-        "key": " Shell"
-    },
-    "break",
-
-    {
-        "type": "display",
-        "key": " Display (GN05)"
+        "key": " SHELL",
+        "keyColor": "blue",
+        "format": "{pretty-name} [{#keys}{version}{#output}]"
     },
     {
-        "type": "wm",
-        "key": " WM"
+        "type": "bios",
+        "key": " BIOS",
+        "keyColor": "blue",
+        "format": "{type} [{#keys}{version} {release}{#output}]"
     },
     {
-        "type": "cursor",
-        "key": " Cursor"
+        "type": "vulkan",
+        "key": " VULKAN",
+        "keyColor": "blue",
+        "format": "Version [{#keys}{api-version}{#output}]"
     },
     {
-        "type": "terminal",
-        "key": " Terminal"
-    },
-    {
-        "type": "terminalfont",
-        "key": " Terminal Font"
+        "type": "packages",
+        "key": " PACKAGES",
+        "keyColor": "blue",
+        "format": "[{#keys}{all}{#output}] Total - [{#keys}{pacman}{#output}] pacman, [{#keys}{flatpak-system}{#output}] flatpak"
     },
     {
         "type": "custom",
-        "format": "\u001b[90m└────────────────────────────────────────────────────┘"
+        "format": "\u001b[{$2}m└──────────────────────────────────────────────────────────┘"
     },
     {
         "type": "custom",
-        "format": "\u001b[90m┌────────────────Uptime / DT / Locale────────────────┐"
+        "format": "\u001b[{$2}m┌─────────────────────Uptime / DateTime────────────────────┐"
     },
     {
         "type": "uptime",
-        "key": "  ›  Uptime"
+        "key": " UPTIME",
+        "keyColor": "magenta",
+        "format": "[{#yellow}{formatted}{#output}]"        
     },
     {
         "type": "datetime",
-        "key": "  ›  DateTime"
-    },
-    {
-        "type": "locale",
-        "key": "  ›  Locale"
+        "key": " DATETIME",
+        "keyColor": "magenta",
+        "format": "[{#yellow}{month-name} {day-in-month}, {year} >> {hour-pretty}:{minute-pretty}:{second-pretty}{#output}]"
     },
     {
         "type": "custom",
-        "format": "\u001b[90m└────────────────────────────────────────────────────┘"
+        "format": "\u001b[{$2}m└──────────────────────────────────────────────────────────┘"
     },
     {
         "type": "colors",
-        "paddingLeft": 1,
+        "paddingLeft": 22,
         "symbol": "square"
     }
-
-    // "de",
-    // "wmtheme",
-    // "theme",
-    // "icons",
-    // "font",
-    // "break",
-    
-    // "localip",
-    // "battery",
-    // "poweradapter",
-    // "locale"
 
   ]
 }
