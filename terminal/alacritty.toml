@@ -82,7 +82,11 @@ save_to_clipboard = false
 [mouse]
 hide_when_typing = true
 
-# [keyboard]
-# bindings = [
-#     {key = "A", mods = "Shift", mode = "~Alt", chars = "hi"}
-# ]
+[keyboard]
+bindings = [
+#    {key = "ArrowUp", mods = "Control", action = "IncreaseFontSize"},
+#    {key = "ArrowDown", mods = "Control", action = "DecreaseFontSize"},
+    {key = "0", mods = "Control", action = "ResetFontSize"},
+#    {key = "=", mods = "Control", action = "None"},
+#    {key = "-", mods = "Control", action = "None"}
+]
