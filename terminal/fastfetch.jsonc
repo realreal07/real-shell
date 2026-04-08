@@ -86,7 +86,7 @@
     {
         "type": "disk",
         "key": " LDISK    ",
-        "hideFS": "fuseblk",
+        "hideFS": "ntfs3",
         "keyColor": "red",
         "format": "{#keys}{size-used}{#} / {#keys}{size-total}{#} {#keys}({filesystem}){#} [{size-percentage}]"
     },
