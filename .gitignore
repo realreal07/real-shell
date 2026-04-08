@@ -1,4 +1,4 @@
-# Ignore all cache
+# Ignore this stuff
 .cache/
 *.swp
 *.tmp
