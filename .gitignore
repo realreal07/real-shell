@@ -1,6 +1,3 @@
 # Ignore this stuff
 .cache/
-*.swp
-*.tmp
-.env
-.env.*
+.*
