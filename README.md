@@ -2,6 +2,9 @@
 
 ## Includes
  - hyprland.conf
+ - hypridle.conf
+ - hyprlock.conf
+
  - alacritty.toml
  - fastfetch.jsonc
 
