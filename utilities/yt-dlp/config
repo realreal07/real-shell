@@ -1,0 +1,29 @@
+# YT-DLP
+
+# Paths
+-P ~/Videos/yt-dlp
+
+# Archive
+--download-archive "~/Videos/yt-dlp/archive/youtube.txt"
+
+# Output structure
+-o "youtube/%(uploader|Unknown)s/_%(title).150B [%(id)s]/_%(title).150B - %(uploader|Unknown)s - %(upload_date>%Y-%m-%d)s [%(id)s].%(ext)s"
+
+# Format
+-f "bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4]/bv*+ba/b"
+--merge-output-format mp4
+
+# Metadata
+--embed-metadata
+--embed-chapters
+
+# Subtitles
+--write-subs
+--write-auto-subs
+--sub-langs "en.*,en"
+--sub-format "srt/best"
+
+# Quality of life
+--continue
+--no-part
+--newline
